@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#222">
-    <link rel="icon" type="image/png" href="上图标.ico">
     <title>英格兰神秘事件手记</title>
     <style>
+ <style>
        body {
     font-family: 'cursive', sans-serif;
     margin: 0;
@@ -53,7 +52,31 @@
             background-color: #ddd;
         }
     </style>
+    <style>
+      body {
+    background: linear-gradient(to right, blue, red);
+    color: white;
+}
+
+body {
+    background: linear-gradient(to right, blue, red);
+}
+
+body.blue-background {
+    color: white;
+}
+
+body.red-background {
+    color: white;
+}
+div {
+    color: black;
+}
+    </style>
 </head>
+<script>document.body.classList.add('blue-background'); // 蓝色背景时
+document.body.classList.remove('blue-background'); // 红色背景时
+</script>
 <body>
     <header>
         <h1>英格兰神秘事件手记</h1>
