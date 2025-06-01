@@ -1,86 +1,83 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<doctype html>
+<html lang=¡°zh-CN¡±>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>è‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°</title>
-    <style>
- <style>
-       body {
-    font-family: 'cursive', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: #333;
+<title>gravity visual¹¤×÷ÊÒ </title>
+<meta charset=¡°UTF-8¡±>
+<meta content=¡°keywords¡± content=¡°¹¤×÷ÊÒ£¬ÓÎÏ·£¬ÖØÁ¦ÊÓ¾õ¹¤×÷ÊÒ£¬ACGÓÎÏ·¡±/>
+<meta name=¡°description¡± content=¡°ÕâÀïÊÇÖØÁ¦ÊÓ¾õ¹¤×÷ÊÒ¡£¡±
+<meta name=¡°robots¡± content=¡°all¡±
+<link rel=¡°stylesheet¡± href=¡°css/menu.css¡± type=¡°text/css¡±>
+<link rel=¡°icon¡± href=¡°studio.ico¡± type=¡°image/png¡±>
+<!--[if lt IE 9]>
+      <script src=¡°https://html5shiv.googlecode.com/svn/trunk/html5.js¡±></script>
+<![endif]-->
+<link rel=¡°stylesheet¡± href=¡°css/normalize.css¡± type=¡°text/css¡±>
+<script src=¡°https://leaverou.github.com/prefixfree/prefixfree.min.js¡±></script>
+<style type=¡°text/css¡±>
+ #menu{float:left;width:120px;height:600px;margin:0 auto;border-radius:25px;background:#808080;position:absolute;color:white;animation:menu 2s;
+-moz-animation:menu 2s 
+-webkit-animation:menu 2s
+-o-animation:menu 2s
 }
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 15px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .game {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        a:hover {
-            background-color: #ddd;
-        }
-    </style>
-    <style>
-      body {
-    background: linear-gradient(grey);
-    color: white;
+@keyframes menu 
+{
+from,0% {left:-150px}
+50%        {left:0px}
+to,100%  {left:20px}
 }
-div {
-    color: black;
+@-webkit-keyframes menu 
+{
+from,0% {left:-150px}
+50%        {left:0px}
+to,100%  {left:20px}
 }
-    </style>
+@-moz-animation menu 
+{
+from,0% {left:-150px}
+50%        {left:0px}
+to,100%  {left:20px}
+}
+@-o-animation menu 
+{
+from,0% {left:-150px}
+50%        {left:0px}
+to,100%  {left:20px}
+}
+#slidein{float:right;width:800;height:750;marigin:0 auto;border-top-right-radius:25px;border-top-left-radius:25px;position:absolute;animation:slide 2s;background-color:#808080
+@keyframes slide
+{
+from,0% {top:2000px}
+50% {top:1000px}
+to,100% {200px}
+}
+        body {
+            background-image: background.jpg;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+#header{
+background-color:#808080
+}
+#p1{
+text-align:left
+color:#ffffff
+}
+#p2{
+text-align:right
+color:#ffffff
+}
+</style>
 </head>
-</script>
 <body>
-    <header>
-        <h1>è‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°</h1>
-    </header>
-    <section class="intro">
-        <h2>æ¢ç´¢ç¥ç§˜çš„è‹±æ ¼å…°</h2>
-        <p>åœ¨ã€Šè‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°ã€‹ä¸­ï¼Œæ‚¨å°†è¸ä¸Šä¸€æ®µå……æ»¡è°œé¢˜å’ŒæŒ‘æˆ˜çš„æ—…ç¨‹ï¼Œæ­å¼€è‹±æ ¼å…°ç¥ç§˜äº‹ä»¶çš„é¢çº±ã€‚</p>
-    </section>
-    <section class="games">
-        <div class="game">
-            <h3>è‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°</h3>
-            <p>ã€Šè‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°ã€‹æ˜¯ä¸€æ¬¾å¼•äººå…¥èƒœçš„è§£è°œå†’é™©æ¸¸æˆï¼Œè®©æ‚¨æ²‰æµ¸åœ¨ç¥ç§˜çš„æ•…äº‹ä¹‹ä¸­ï¼ŒæŒ‘æˆ˜æ‚¨çš„æ™ºåŠ›å’Œè§‚å¯ŸåŠ›ã€‚</p>
-            <h1>ç‚¹å‡»æ­¤å¤„å³å¯ä¸‹è½½</h1>
-            <a href="notes_of_mysteries_in_England.exe" download>ä¸‹è½½</a>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 è‹±æ ¼å…°ç¥ç§˜äº‹ä»¶æ‰‹è®°. ç‰ˆæƒå½’ <a href="studio.html">æ€æƒ³è€…å·¥ä½œå®¤</a>æ‰€æœ‰ All Rights Reserved.</p>
-    </footer>
+<header id="header">
+<p id="p1"> <img src="studio.png" alt="Í¼±ê"> </p>
+<p id="p2"> <a href="index.html">Ê×Ò³</a>&nbsp<a href="turning.html">¹¤×÷ÊÒ</a>&nbsp<a href="https://space.bilibili.com/3493107595217806?spm_id_from=333.337.0.0">¹Ø×¢bÕ¾</a></p>
+</header>
+<body>
+<div id="menu"><p id="p1">»¹Ã»Ğ´ÈÎºÎ¶«Î÷Äó</p> </div>
+<div id="slidein"><p id="p1">»¹Ã»Ğ´ÈÎºÎ¶«Î÷Äó</p></div>
 </body>
-</html>
+<footer>
+<p>&copy; 2024 Ó¢¸ñÀ¼ÉñÃØÊÂ¼şÊÖ¼Ç. °æÈ¨¹é <a href="studio.html">Ë¼ÏëÕß¹¤×÷ÊÒ</a>ËùÓĞ All Rights Reserved.</p>
+</footer>
