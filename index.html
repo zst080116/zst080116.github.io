@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/normalize.css" type="text/css">
 <script src="https://leaverou.github.com/prefixfree/prefixfree.min.js"></script>
 <style type="text/css">
- #menu{float:left;width:120px;height:600px;margin:0 auto;border-radius:25px;background:#808080;position:absolute;color:white;animation:menu 2s;text-align:left;color:#ffffff;
+ #menu{float:left;width:120px;height:600px;margin:0 auto;border-radius:25px;background:#808080;position:fixed;color:white;animation:menu 2s;text-align:left;color:#ffffff;top:50px;left:20px
 -moz-animation:menu 2s 
 -webkit-animation:menu 2s
 -o-animation:menu 2s
@@ -43,13 +43,14 @@ from,0% {left:-150px}
 50%        {left:0px}
 to,100%  {left:20px}
 }
-#slidein{float:right;width:800;height:750;marigin:0 auto;border-top-right-radius:25px;border-top-left-radius:25px;position:absolute;animation:slide 2s;background-color:#808080;text-align:left;color:#ffffff;
+#slidein{float:right;width:800;height:750;marigin:0 auto;border-top-right-radius:25px;border-top-left-radius:25px;position:fixed;animation:slide 2s;background-color:#808080;text-align:left;color:#ffffff;top:50px;right:20px
 @keyframes slide
 {
 from,0% {top:2000px}
 50% {top:1000px}
 to,100% {200px}
 }
+#p1 {display:block,background-color:#808080,color:white}
 #header{
 background-color:#808080
 }
@@ -58,7 +59,7 @@ background-color:#808080
 <body background-image: background.jpg>
 <header id="header">
 <p id="p1"> <img src="studio.png" alt="图标"> </p>
-<p id="p2"> <a href="index.html">首页</a>&nbsp<a href="turning.html">工作室</a>&nbsp<a href="https://space.bilibili.com/3493107595217806?spm_id_from=333.337.0.0">关注b站</a></p>
+<p id="p1"> <a href="index.html">首页</a>&nbsp<a href="turning.html">工作室</a>&nbsp<a href="https://space.bilibili.com/3493107595217806?spm_id_from=333.337.0.0">关注b站</a></p>
 </header>
 <body>
 <div id="menu"><p id="p1">还没写任何东西捏</p> </div>
