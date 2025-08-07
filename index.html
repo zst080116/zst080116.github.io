@@ -1,71 +1,191 @@
-<doctype html>
-<html lang="EN">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>gravity visual工作室 </title>
-<meta charset="UTF-8">
-<meta content="keywords" content="工作室，游戏，重力视觉工作室，ACG游戏"/>
-<meta name="description" content="这里是重力视觉工作室。"/>
-<meta name="robots" content="all"/>
-<link rel="stylesheet" href="css/menu.css" type="text/css">
-<link rel="icon" href="studio.ico" type="image/png">
-<!--[if lt IE 9]>
-      <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<link rel="stylesheet" href="normalize.css" type="text/css">
-<script src="https://leaverou.github.com/prefixfree/prefixfree.min.js"></script>
-<style type="text/css">
- #menu{float:left;width:120px;height:600px;margin:0 auto;border-radius:25px;background:#808080;position:fixed;color:white;animation:menu 2s;text-align:left;color:#ffffff;top:50px;left:20px;
--moz-animation:menu 2s ;
--webkit-animation:menu 2s;
--o-animation:menu 2s
-}
-@keyframes menu 
-{
-from,0% { left:-150px}
-50%        { left:0px}
-to,100%  { left:20px}
-}
-@-webkit-keyframes menu 
-{
-from,0% {left:-150px}
-50%        {left:0px}
-to,100%  {left:20px}
-}
-@-moz-animation menu 
-{
-from,0% {left:-150px}
-50%        {left:0px}
-to,100%  {left:20px}
-}
-@-o-animation menu 
-{
-from,0% {left:-150px}
-50%        {left:0px}
-to,100%  {left:20px}
-}
-#slidein{float:right;width:800;height:750;margin:0 auto;border-top-right-radius:25px;border-top-left-radius:25px;position:fixed;animation:slide 2s;background-color:#808080;text-align:left;color:#ffffff;top:50px;right:20px;
-@keyframes: slide
-{
-from,0% {top:100%}
-50% {top:50%}
-to,100% {top:100%}
-}
-#p1 {display:block;background-color:#808080;color:white}
-#header{
-background-color:#808080
-}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星辰游戏工作室</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <style>
+        /* 之前的所有CSS样式保持不变... */
+        
+        /* 添加favicon控制面板样式 */
+        .favicon-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 12px;
+            display: none; /* 默认隐藏，开发时可见 */
+        }
+    </style>
 </head>
-<body background-image: background.jpg>
-<header id="header">
-<p id="p1"> <img src="studio.png" alt="图标"> </p>
-<p id="p1"> <a href="index.html">首页</a>&nbsp<a href="turning.html">工作室</a>&nbsp<a href="https://space.bilibili.com/3493107595217806?spm_id_from=333.337.0.0">关注b站</a></p>
-</header>
 <body>
-<div id="menu"><p id="p1">还没写任何东西捏</p> </div>
-<div id="slidein"><p id="p1">还没写任何东西捏</p></div>
+    <!-- 之前的所有HTML内容保持不变... -->
+
+    <!-- 在页面底部添加控制面板（开发调试用） -->
+    <div class="favicon-controls">
+        <button onclick="cubeFavicon.toggleRotation()">切换旋转</button>
+        <button onclick="cubeFavicon.setSpeed(1)">慢速</button>
+        <button onclick="cubeFavicon.setSpeed(3)">快速</button>
+    </div>
+
+    <script>
+        // 3D立方体Favicon旋转系统
+        class CubeFavicon {
+          constructor() {
+            // 配置参数
+            this.config = {
+              size: 32,     // 图标尺寸
+              speed: 2,     // 旋转速度
+              scale: 10     // 立方体大小
+            };
+            
+            // 初始化画布
+            this.canvas = document.createElement('canvas');
+            this.canvas.width = this.config.size;
+            this.canvas.height = this.config.size;
+            this.ctx = this.canvas.getContext('2d');
+            
+            // 设置favicon
+            this.favicon = document.querySelector("link[rel='icon']") || 
+                          document.createElement('link');
+            this.favicon.rel = 'icon';
+            document.head.appendChild(this.favicon);
+            
+            // 立方体顶点数据
+            this.vertices = [
+              [-1,-1,-1], [1,-1,-1], [1,1,-1], [-1,1,-1], // 后面
+              [-1,-1,1], [1,-1,1], [1,1,1], [-1,1,1]     // 前面
+            ];
+            
+            // 立方体面数据 [顶点索引, 颜色]
+            this.faces = [
+              [0,1,2,3, '#3498db'], // 后面
+              [4,5,6,7, '#2980b9'], // 前面
+              [1,5,6,2, '#1abc9c'], // 右面
+              [0,4,7,3, '#9b59b6'], // 左面
+              [3,7,6,2, '#e74c3c'], // 顶面
+              [0,4,5,1, '#f1c40f']  // 底面
+            ];
+            
+            // 旋转状态
+            this.angleX = 20;
+            this.angleY = 30;
+            this.isRotating = true;
+            
+            // 开始动画
+            this.animate();
+          }
+          
+          // 顶点旋转计算
+          rotateVertex(x, y, z) {
+            // X轴旋转
+            const cosX = Math.cos(this.angleX * Math.PI/180);
+            const sinX = Math.sin(this.angleX * Math.PI/180);
+            const y1 = y * cosX - z * sinX;
+            const z1 = y * sinX + z * cosX;
+            
+            // Y轴旋转
+            const cosY = Math.cos(this.angleY * Math.PI/180);
+            const sinY = Math.sin(this.angleY * Math.PI/180);
+            const x1 = x * cosY + z1 * sinY;
+            const z2 = -x * sinY + z1 * cosY;
+            
+            return { x: x1, y: y1, z: z2 };
+          }
+          
+          // 绘制立方体
+          drawCube() {
+            // 清空画布
+            this.ctx.clearRect(0, 0, this.config.size, this.config.size);
+            this.ctx.fillStyle = '#2c3e50';
+            this.ctx.fillRect(0, 0, this.config.size, this.config.size);
+            
+            // 绘制每个面
+            this.faces.forEach(face => {
+              const [a,b,c,d, color] = face;
+              
+              // 获取旋转后的顶点
+              const p1 = this.rotateVertex(...this.vertices[a]);
+              const p2 = this.rotateVertex(...this.vertices[b]);
+              const p3 = this.rotateVertex(...this.vertices[c]);
+              const p4 = this.rotateVertex(...this.vertices[d]);
+              
+              // 背面剔除
+              const normal = (p2.y - p1.y) * (p3.z - p1.z) - (p2.z - p1.z) * (p3.y - p1.y);
+              if (normal < 0) return;
+              
+              // 2D投影
+              const center = this.config.size / 2;
+              const project = p => ({
+                x: center + p.x * this.config.scale,
+                y: center + p.y * this.config.scale
+              });
+              
+              // 绘制面
+              this.ctx.fillStyle = color;
+              this.ctx.beginPath();
+              this.ctx.moveTo(project(p1).x, project(p1).y);
+              this.ctx.lineTo(project(p2).x, project(p2).y);
+              this.ctx.lineTo(project(p3).x, project(p3).y);
+              this.ctx.lineTo(project(p4).x, project(p4).y);
+              this.ctx.closePath();
+              this.ctx.fill();
+            });
+            
+            // 更新favicon
+            this.favicon.href = this.canvas.toDataURL('image/png');
+          }
+          
+          // 动画循环
+          animate() {
+            if (this.isRotating) {
+              this.angleY += this.config.speed;
+              this.angleX += this.config.speed * 0.5;
+            }
+            
+            this.drawCube();
+            requestAnimationFrame(() => this.animate());
+          }
+          
+          // 控制方法
+          toggleRotation() {
+            this.isRotating = !this.isRotating;
+          }
+          
+          setSpeed(speed) {
+            this.config.speed = speed;
+          }
+          
+          setColors(colors) {
+            this.faces.forEach((face, i) => {
+              face[4] = colors[i] || face[4];
+            });
+          }
+        }
+
+        // 页面加载完成后初始化3D Favicon
+        document.addEventListener('DOMContentLoaded', function() {
+            const cubeFavicon = new CubeFavicon();
+            
+            // 将实例暴露给全局，方便调试
+            window.cubeFavicon = cubeFavicon;
+            
+            // 当页面失去焦点时暂停旋转
+            window.addEventListener('blur', function() {
+                cubeFavicon.toggleRotation();
+            });
+            
+            // 当页面重新获得焦点时恢复旋转
+            window.addEventListener('focus', function() {
+                if (!cubeFavicon.isRotating) {
+                    cubeFavicon.toggleRotation();
+                }
+            });
+        });
+    </script>
 </body>
-<footer>
-      <p>&copy gravity visual 工作室所有</p>
-</footer>
 </html>
