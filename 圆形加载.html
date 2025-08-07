@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圆形加载画面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        .loader-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+        }
+        
+        .loader {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .loader-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid transparent;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+        
+        .loader-circle:nth-child(2) {
+            border-top-color: #e74c3c;
+            animation-delay: -0.5s;
+        }
+        
+        .loader-circle:nth-child(3) {
+            border-top-color: #f1c40f;
+            animation-delay: -1s;
+        }
+        
+        .loader-percent {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .completed {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-percent">0%</div>
+        </div>
+    </div>
+    
+    <div class="completed">
+        加载完成，即将跳转...
+    </div>
+
+    <script>
+        let percent = 0;
+        const percentElement = document.querySelector('.loader-percent');
+        const loaderContainer = document.querySelector('.loader-container');
+        const completedElement = document.querySelector('.completed');
+        
+        // 模拟加载过程
+        const interval = setInterval(() => {
+            percent += 1;
+            percentElement.textContent = percent + '%';
+            
+            if (percent >= 100) {
+                clearInterval(interval);
+                loaderContainer.style.display = 'none';
+                completedElement.style.display = 'block';
+                
+                // 3秒后跳转（这里跳转到百度，你可以修改为你需要的URL）
+                setTimeout(() => {
+                    window.location.href = 'https://www.baidu.com';
+                }, 2000);
+            }
+        }, 50); // 调整这个时间可以改变加载速度
+    </script>
+</body>
+</html>
