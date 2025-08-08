@@ -4,34 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>星辰游戏工作室</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <style>
-        /* 之前的所有CSS样式保持不变... */
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        /* 添加favicon控制面板样式 */
-        .favicon-controls {
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: #1a1a1a;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
-            border-radius: 5px;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 3D立方体Logo */
+        .logo-container {
+            width: 50px;
+            height: 50px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .cube-logo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 15s infinite linear;
+            transition: all 0.3s;
+        }
+        
+        .cube-logo:hover {
+            animation-play-state: paused;
+            transform: scale(1.1);
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #000000;
+            background-color: rgba(255, 107, 0, 0.2);
+            box-shadow: inset 0 0 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        /* 立方体各面位置 */
+        .cube-face.front  { transform: rotateY(0deg) translateZ(25px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(25px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(25px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(25px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(25px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
+        
+        @keyframes rotate {
+            from { transform: rotateX(0) rotateY(0); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        
+        /* 导航菜单 */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
             color: white;
-            font-size: 12px;
-            display: none; /* 默认隐藏，开发时可见 */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #ff6b00;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* 主要内容 */
+        main {
+            margin-top: 80px;
+            padding: 50px 5%;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #ff6b00;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e05d00;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #0d0d0d;
+            padding: 30px 5%;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff6b00;
+        }
+        
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- 之前的所有HTML内容保持不变... -->
-
+    <!-- 导航栏 -->
+    <header>
+        <!-- 3D立方体Logo -->
+        <a href="index.html" class="logo-container">
+            <div class="cube-logo">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+        </a>
+        
+        <!-- 导航菜单 -->
+        <nav>
+            <ul>
+                <li><a href="#games">游戏作品</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#careers">加入团队</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <section class="hero">
+            <h1>创造非凡的游戏体验</h1>
+            <p>星辰游戏工作室致力于开发高质量、创新性的游戏作品，为玩家带来难忘的娱乐体验</p>
+            <a href="#games" class="cta-button">探索我们的游戏</a>
+        </section>
+        
+        <!-- 其他内容部分可以根据需要添加 -->
     <!-- 在页面底部添加控制面板（开发调试用） -->
-    <div class="favicon-controls">
-        <button onclick="cubeFavicon.toggleRotation()">切换旋转</button>
-        <button onclick="cubeFavicon.setSpeed(1)">慢速</button>
-        <button onclick="cubeFavicon.setSpeed(3)">快速</button>
-    </div>
-
     <script>
         // 3D立方体Favicon旋转系统
         class CubeFavicon {
@@ -187,5 +378,17 @@
             });
         });
     </script>
+
+    </main>
+    
+    <!-- 页脚 -->
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#">隐私政策</a></li>
+            <li><a href="#">服务条款</a></li>
+            <li><a href="#">常见问题</a></li>
+        </ul>
+        <p class="copyright">© 2023 星辰游戏工作室. 保留所有权利.</p>
+    </footer>
 </body>
 </html>
